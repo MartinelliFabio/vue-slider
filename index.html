@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Vue - Slider</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <div :style="{ backgroundImage: 'url(' + games[activeIndex].image + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', filter: 'blur(8px)', height: '100vh' }"></div>
+        <div class="container">
+            <div class="slider-wrapper" :style="{ outline: '3px solid white', outlineOffset: '-0.1rem' }" tabindex="0" @mouseleave="autoScroll" @mouseover="stopScroll">
+
+                <div class="item">
+                    <img :src="games[activeIndex].image" :alt="games[activeIndex].title" />
+                    <div class="text">
+                        <h3>{{games[activeIndex].title}}</h3>
+                        <p>
+                            {{games[activeIndex].text}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="thumbs">
+                    <div class="prev" @click="prevGame()"></div>
+                    <div class="next" @click="nextGame()"></div>
+                    <div class="thumb" @click="showGame(index)" v-for="(game,index) in games" :key="index" :class="index === activeIndex ? 'active' : ''">
+                        <img :src="games[index].image" :alt="games[activeIndex].title"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
